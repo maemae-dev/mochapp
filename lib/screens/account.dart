@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AccountPage extends StatefulWidget {
-  AccountPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _AccountPageState createState() => _AccountPageState();
-}
-
-class _AccountPageState extends State<AccountPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +27,7 @@ class _AccountPageState extends State<AccountPage> {
       ),
       body: Center(child: Text('ユーザー編集画面')),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),

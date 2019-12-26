@@ -23,7 +23,30 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     const double gridGap = 20.0;
 
+    void navigateAccount() async {
+      Navigator.pushNamed(context, Routes.account);
+    }
+
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: <Widget>[
+          Material(
+            elevation: 4.0,
+            shape: CircleBorder(),
+            clipBehavior: Clip.hardEdge,
+            color: Colors.transparent,
+            child: Ink.image(
+              width: 45,
+              height: 45,
+              image: NetworkImage(
+                  'https://pbs.twimg.com/profile_images/801866113017475072/235h8WlK_reasonably_small.jpg'),
+              fit: BoxFit.cover,
+              child: InkWell(onTap: navigateAccount),
+            ),
+          ),
+        ],
+      ),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -40,17 +63,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   image: NetworkImage(
                       'https://pbs.twimg.com/profile_images/801866113017475072/235h8WlK_reasonably_small.jpg'),
                   fit: BoxFit.cover,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, Routes.account);
-                    },
-                  ),
+                  child: InkWell(onTap: navigateAccount),
                 ),
               ),
             ],
           ),
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: gridGap),
+            padding: EdgeInsets.only(
+                right: gridGap, left: gridGap, bottom: gridGap * 7),
             sliver: SliverGrid.count(
               crossAxisSpacing: gridGap,
               mainAxisSpacing: gridGap,
@@ -61,10 +81,28 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          SizedBox(width: 90),
+          Container(
+            height: 100.0,
+            width: 100.0,
+            child: FittedBox(
+              child: FloatingActionButton(
+                onPressed: navigateAccount,
+                child: Icon(Icons.done_outline),
+              ),
+            ),
+          ),
+          FloatingActionButton(
+            backgroundColor: Colors.lime,
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
@@ -75,9 +113,9 @@ class Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          color: Colors.teal),
-      // color: Colors.yellow,
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        color: Colors.teal,
+      ),
       child: Center(
         child: Text(
           'data',
