@@ -24,25 +24,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          Material(
-            elevation: 4.0,
-            shape: CircleBorder(),
-            clipBehavior: Clip.hardEdge,
-            color: Colors.transparent,
-            child: Ink.image(
-              width: 45,
-              height: 45,
-              image: NetworkImage(
-                  'https://pbs.twimg.com/profile_images/801866113017475072/235h8WlK_reasonably_small.jpg'),
-              fit: BoxFit.cover,
-              child: InkWell(onTap: navigateAccount),
-            ),
-          ),
-        ],
-      ),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -87,12 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 100.0,
             child: FittedBox(
               child: FloatingActionButton(
+                heroTag: 'random',
                 onPressed: navigateAccount,
                 child: Icon(Icons.done_outline),
               ),
             ),
           ),
           FloatingActionButton(
+            heroTag: 'newRoom',
             backgroundColor: Colors.lime,
             onPressed: _incrementCounter,
             tooltip: 'Increment',
